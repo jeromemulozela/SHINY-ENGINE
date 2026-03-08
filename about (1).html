@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Zangi — a self-taught developer and designer from Zambia.">
+  <title>About — Zangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── Page Hero ───────────────────────────────────────────── */
+    .page-hero {
+      padding: clamp(80px,14vw,160px) clamp(20px,5vw,48px) clamp(48px,7vw,80px);
+      border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 50% 60% at 20% 60%, rgba(184,255,87,0.06) 0%, transparent 70%);
+    }
+    .page-hero-inner { max-width: 1400px; margin: 0 auto; }
+    .page-hero-h {
+      font-family: var(--font-head); font-weight: 800; letter-spacing: -0.035em;
+      font-size: clamp(3rem,9vw,9rem); line-height: 0.92; margin-bottom: 0;
+      animation: fadeUp .85s var(--ease) both;
+    }
+
+    /* ── Intro Section ───────────────────────────────────────── */
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: clamp(40px,6vw,96px); align-items: start;
+    }
+    @media (max-width: 860px) { .intro-grid { grid-template-columns: 1fr; } }
+
+    .profile-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden; position: sticky; top: 90px;
+    }
+    @media (max-width: 860px) { .profile-card { position: static; } }
+    .profile-card-top {
+      aspect-ratio: 1; background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .profile-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: var(--accent-dim); border: 2px solid rgba(184,255,87,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; color: var(--accent);
+    }
+    .profile-name { font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; }
+    .profile-role { font-size: 0.82rem; color: var(--text-2); }
+    .profile-card-body { padding: 24px; }
+    .profile-info-row {
+      display: flex; align-items: center; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text-2);
+    }
+    .profile-info-row:last-child { border-bottom: none; }
+    .profile-info-row i { width: 20px; color: var(--accent); flex-shrink: 0; }
+    .profile-info-row strong { color: var(--text-1); }
+
+    .about-bio { display: flex; flex-direction: column; gap: 0; }
+    .bio-block {
+      padding: clamp(28px,4vw,44px) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .bio-block:first-child { padding-top: 0; }
+    .bio-h { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .bio-h i { color: var(--accent); font-size: 0.9rem; }
+    .bio-p { font-size: 0.92rem; color: var(--text-2); line-height: 1.85; }
+
+    /* ── Values ──────────────────────────────────────────────── */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; margin-top: clamp(32px,5vw,56px);
+    }
+    @media (max-width: 580px) { .values-grid { grid-template-columns: 1fr; } }
+    .value-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: clamp(24px,3.5vw,36px);
+      transition: border-color .3s, transform .3s;
+    }
+    .value-card:hover { border-color: var(--border-2); transform: translateY(-4px); }
+    .value-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      border: 1px solid var(--border); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--accent); margin-bottom: 20px;
+    }
+    .value-title { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .value-desc { font-size: 0.84rem; color: var(--text-2); line-height: 1.75; }
+
+    /* ── Timeline ────────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; padding-bottom: clamp(28px,4vw,44px); }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -29px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid var(--accent); background: var(--bg);
+    }
+    .tl-date { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+    .tl-title { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-2); line-height: 1.75; }
+
+    /* ── Stats ───────────────────────────────────────────────── */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    @media (max-width: 580px) { .stats-grid { grid-template-columns: 1fr; } }
+    .stats-item {
+      padding: clamp(24px,4vw,44px); text-align: center;
+      border-right: 1px solid var(--border); transition: background .3s;
+    }
+    .stats-item:last-child { border-right: none; }
+    @media (max-width: 580px) { .stats-item { border-right: none; border-bottom: 1px solid var(--border); } .stats-item:last-child { border-bottom: none; } }
+    .stats-item:hover { background: var(--surface); }
+    .stats-n {
+      font-family: var(--font-head); font-size: clamp(2.2rem,5vw,4rem);
+      font-weight: 800; letter-spacing: -0.04em; color: var(--text-1); margin-bottom: 8px;
+    }
+    .stats-n span { color: var(--accent); }
+    .stats-l { font-size: 0.82rem; color: var(--text-2); }
+
+    /* ── Interests ───────────────────────────────────────────── */
+    .interest-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(24px,4vw,40px); }
+    .interest-chip {
+      display: flex; align-items: center; gap: 8px; padding: 10px 18px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 100px;
+      font-size: 0.85rem; color: var(--text-2); transition: all .2s;
+    }
+    .interest-chip:hover { border-color: var(--border-2); color: var(--text-1); transform: translateY(-2px); }
+    .interest-chip i { color: var(--accent); font-size: 0.85em; }
+
+    /* ── FAQ ─────────────────────────────────────────────────── */
+    .faq-list { border-top: 1px solid var(--border); margin-top: clamp(32px,5vw,56px); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: clamp(20px,3vw,28px) 0; text-align: left; cursor: none;
+      font-family: var(--font-head); font-size: clamp(0.9rem,1.8vw,1.05rem); font-weight: 700;
+      color: var(--text-1); transition: color .2s;
+    }
+    .faq-q:hover { color: var(--accent); }
+    @media (max-width:768px) { .faq-q { cursor: pointer; } }
+    .faq-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; color: var(--text-2); flex-shrink: 0;
+      transition: transform .3s, background .3s, border-color .3s, color .3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: #050508; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease); }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a-inner { padding-bottom: 24px; font-size: 0.9rem; color: var(--text-2); line-height: 1.8; max-width: 680px; }
+  </style>
+</head>
+<body>
+  <div class="bg-dots"></div>
+  <div class="c-dot"></div>
+  <div class="c-ring"></div>
+
+  <nav class="nav solid" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="bracket">[</span>ZANGI<span class="bracket">]</span></a>
+      <div class="nav-status"><div class="status-dot"></div>Available for projects</div>
+      <div class="nav-links">
+        <a href="index.html"   class="nav-link" data-page="index.html">Home</a>
+        <a href="work.html"    class="nav-link" data-page="work.html">Work</a>
+        <a href="about.html"   class="nav-link" data-page="about.html">About</a>
+        <a href="contact.html" class="nav-link nav-cta" data-page="contact.html">Let's Talk</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <nav class="nav-drawer" id="drawer">
+    <a href="index.html"   class="nav-link" data-page="index.html">Home</a>
+    <a href="work.html"    class="nav-link" data-page="work.html">Work</a>
+    <a href="about.html"   class="nav-link" data-page="about.html">About</a>
+    <a href="contact.html" class="nav-link nav-cta" data-page="contact.html">Let's Talk →</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+        <span style="font-family:var(--font-head);font-size:0.75rem;font-weight:700;color:var(--text-3);letter-spacing:0.08em;">03 / 04</span>
+        <span class="pill pill-accent">About Me</span>
+      </div>
+      <h1 class="page-hero-h">The human<br><span style="color:var(--accent)">behind the code.</span></h1>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="intro-grid">
+        <div class="profile-card reveal">
+          <div class="profile-card-top">
+            <div class="profile-avatar"><i class="fas fa-user-astronaut"></i></div>
+            <div class="profile-name">Zangi</div>
+            <div class="profile-role">Developer & Designer</div>
+          </div>
+          <div class="profile-card-body">
+            <div class="profile-info-row"><i class="fas fa-map-marker-alt"></i><span>Lusaka, <strong>Zambia</strong></span></div>
+            <div class="profile-info-row"><i class="fas fa-briefcase"></i><span><strong>Available</strong> for freelance</span></div>
+            <div class="profile-info-row"><i class="fas fa-envelope"></i><a href="mailto:zangi@gmail.com" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="abd1cac5ccc2ebccc6cac2c785c8c4c6">[email&#160;protected]</span></a></div>
+            <div class="profile-info-row"><i class="fas fa-phone"></i><a href="tel:+260765978078" style="color:var(--text-2)">+260 765 978 078</a></div>
+            <div class="profile-info-row"><i class="fab fa-github"></i><a href="https://github.com/heavenmade360" target="_blank" style="color:var(--text-2)">heavenmade360</a></div>
+            <div style="margin-top:20px">
+              <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Hire Me <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-bio reveal d1">
+          <div class="bio-block">
+            <div class="bio-h"><i class="fas fa-user"></i> Who I Am</div>
+            <p class="bio-p">I'm Zangi — a self-taught developer and designer from Zambia, driven by curiosity and a deep love for the web. I started coding by accident (aren't the best stories always accidental?) and got completely hooked by the ability to build something from nothing using just a keyboard.</p>
+          </div>
+          <div class="bio-block">
+            <div class="bio-h"><i class="fas fa-lightbulb"></i> How I Work</div>
+            <p class="bio-p">My approach centers on the details that matter: thoughtful spacing, smooth interactions, clean architecture. I believe the best digital experiences are ones where the design feels so natural that users never think about it — they just feel it. That invisible polish is what I chase in every project.</p>
+          </div>
+          <div class="bio-block">
+            <div class="bio-h"><i class="fas fa-heart"></i> Beyond the Screen</div>
+            <p class="bio-p">When I'm not building, I'm pushing my limits through calisthenics, creating art, and building my content presence. I approach personal growth the same way I approach development: incrementally, intentionally, and relentlessly. I believe mastery in one discipline teaches you to master others.</p>
+          </div>
+          <div class="bio-block" style="border-bottom:none;padding-bottom:0">
+            <div class="bio-h"><i class="fas fa-rocket"></i> The Goal</div>
+            <p class="bio-p">To build a career doing meaningful work — crafting digital products that solve real problems for real people. Every project is a step toward that, and every satisfied client is proof that the direction is right.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal" style="margin-bottom:clamp(32px,5vw,56px)">
+        <div class="label">By the Numbers</div>
+        <h2 class="h2">In Metrics</h2>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stats-item">
+          <div class="stats-n">6<span>+</span></div>
+          <div class="stats-l">Months Experience</div>
+        </div>
+        <div class="stats-item">
+          <div class="stats-n">4<span>+</span></div>
+          <div class="stats-l">Projects Shipped</div>
+        </div>
+        <div class="stats-item">
+          <div class="stats-n">100<span>%</span></div>
+          <div class="stats-l">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal">
+        <div class="label">What Drives Me</div>
+        <h2 class="h2">Core Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal d1">
+          <div class="value-icon"><i class="fas fa-search"></i></div>
+          <div class="value-title">Details First</div>
+          <p class="value-desc">Every pixel matters. I obsess over spacing, typography, and micro-interactions so users feel quality even when they can't explain why.</p>
+        </div>
+        <div class="value-card reveal d2">
+          <div class="value-icon"><i class="fas fa-bolt"></i></div>
+          <div class="value-title">Performance Always</div>
+          <p class="value-desc">Beautiful sites must also be fast. Every project is built with performance as a priority — lean code, optimized assets, real results.</p>
+        </div>
+        <div class="value-card reveal d1">
+          <div class="value-icon"><i class="fas fa-comments"></i></div>
+          <div class="value-title">Transparent Communication</div>
+          <p class="value-desc">No jargon, no guessing games. I keep clients informed throughout and make sure what's built is exactly what was envisioned.</p>
+        </div>
+        <div class="value-card reveal d2">
+          <div class="value-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="value-title">Continuous Growth</div>
+          <p class="value-desc">The web never stops evolving and neither do I. I stay current with modern tools and emerging patterns to always bring fresh thinking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal" style="margin-bottom:clamp(32px,5vw,56px)">
+        <div class="label">My Journey</div>
+        <h2 class="h2">Timeline</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024 — Start</div>
+          <div class="tl-title">First Line of Code</div>
+          <p class="tl-desc">Discovered HTML and CSS. Built my first webpage and immediately fell in love with the idea that you could create anything with just text in a file.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024 — Growth</div>
+          <div class="tl-title">JavaScript & Real Projects</div>
+          <p class="tl-desc">Added JavaScript to the toolkit. Started taking on real freelance projects, learning rapidly through building rather than just tutorials.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2025 — Expanding</div>
+          <div class="tl-title">React & SaaS Development</div>
+          <p class="tl-desc">Leveled up into React and began building more complex platforms — dashboards, SaaS prototypes, and AI-powered tools for real clients.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2026 — Now</div>
+          <div class="tl-title">Freelancing Full-Time</div>
+          <p class="tl-desc">Building my portfolio, taking on exciting client work, and growing toward bigger opportunities. Open to collaborations and new challenges.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERESTS -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal">
+        <div class="label">Beyond Coding</div>
+        <h2 class="h2">Interests</h2>
+      </div>
+      <div class="interest-row reveal">
+        <div class="interest-chip"><i class="fas fa-dumbbell"></i> Calisthenics</div>
+        <div class="interest-chip"><i class="fas fa-paint-brush"></i> Digital Art</div>
+        <div class="interest-chip"><i class="fas fa-video"></i> Content Creation</div>
+        <div class="interest-chip"><i class="fas fa-book"></i> Self-Development</div>
+        <div class="interest-chip"><i class="fas fa-music"></i> Music</div>
+        <div class="interest-chip"><i class="fas fa-gamepad"></i> Game Design</div>
+        <div class="interest-chip"><i class="fas fa-globe"></i> Open Source</div>
+        <div class="interest-chip"><i class="fas fa-brain"></i> AI & Tech</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal">
+        <div class="label">Common Questions</div>
+        <h2 class="h2">FAQ</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">How long does a typical project take? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
+          <div class="faq-a"><div class="faq-a-inner">A landing page or portfolio: 3–7 days. A full website redesign or SaaS prototype: 2–4 weeks. I'll give you a clear timeline before we start, based on scope.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What's your process for new projects? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
+          <div class="faq-a"><div class="faq-a-inner">Discovery call → design direction → your feedback → development → regular updates → launch → post-launch support. Clear, collaborative, no surprises.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you work with international clients? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
+          <div class="faq-a"><div class="faq-a-inner">Absolutely. I work remotely with clients worldwide. Communication via WhatsApp, email, or video call — whatever works best for you.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What do you need from me to get started? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
+          <div class="faq-a"><div class="faq-a-inner">A brief description of your project, your goals, any references you like, and your timeline. We'll figure out the rest together — I make the process easy.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you offer support after launch? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Every project includes a post-launch support period. If anything needs tweaking after you go live, I'm here to make it right.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What's your rate? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
+          <div class="faq-a"><div class="faq-a-inner">Rates vary by project scope and complexity. I offer competitive pricing with transparent quotes — no hidden fees. Get in touch with your project details and I'll send a proposal.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="wrap section">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:clamp(48px,7vw,96px) clamp(32px,5vw,80px);text-align:center;position:relative;overflow:hidden;" class="reveal">
+      <div style="position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,rgba(184,255,87,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+      <div class="label" style="justify-content:center;margin-bottom:16px;">Let's Build Together</div>
+      <h2 style="font-family:var(--font-head);font-weight:800;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-0.04em;line-height:1;margin-bottom:20px;">Ready to start your<br><span style="color:var(--accent)">next project?</span></h2>
+      <p style="color:var(--text-2);max-width:440px;margin:0 auto 36px;font-size:0.93rem;line-height:1.75;">I'm currently available for new freelance work. Let's make something exceptional together.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg">Start a Conversation <i class="fas fa-arrow-right"></i></a>
+        <a href="work.html" class="btn btn-outline btn-lg">See My Work</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="nav-logo"><span class="bracket">[</span>ZANGI<span class="bracket">]</span></span>
+        <span class="footer-copy">© <span class="year"></span> Zangi. All rights reserved.</span>
+        <nav class="footer-nav"><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/heavenmade360" target="_blank" class="social" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/jerome_mulozela" target="_blank" class="social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:zangi@gmail.com"script.js"></script>
+</body>
+</html>

@@ -171,7 +171,7 @@
   </style>
 </head>
 <body>
-  <div class="grain"></div>
+  <div class="bg-dots"></div>
   <div class="c-dot"></div>
   <div class="c-ring"></div>
 
@@ -398,22 +398,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Filter functionality
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.proj-card[data-cat]').forEach(card => {
-          if (filter === 'all' || card.dataset.cat.includes(filter)) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
