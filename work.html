@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zangi's portfolio — web projects, SaaS platforms, and more.">
+  <title>Work — Zangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Page Hero ─────────────────────────────────────────── */
+    .page-hero {
+      padding: clamp(80px,14vw,160px) clamp(20px,5vw,48px) clamp(48px,7vw,80px);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(184,255,87,0.05) 0%, transparent 70%);
+    }
+    .page-hero-inner { max-width: 1400px; margin: 0 auto; }
+    .page-hero-kicker {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+    }
+    .page-hero-kicker .pill-accent { font-size: 0.72rem; }
+    .page-hero-num {
+      font-family: var(--font-head); font-size: 0.75rem; font-weight: 700;
+      color: var(--text-3); letter-spacing: 0.08em;
+    }
+    .page-hero-h {
+      font-family: var(--font-head); font-weight: 800; letter-spacing: -0.035em;
+      font-size: clamp(3rem,9vw,9rem); line-height: 0.92; margin-bottom: 32px;
+      animation: fadeUp .85s var(--ease) both;
+    }
+    .page-hero-h .accent { color: var(--accent); }
+    .page-hero-sub {
+      font-size: clamp(0.9rem,1.8vw,1.05rem); color: var(--text-2);
+      max-width: 500px; line-height: 1.75;
+      animation: fadeUp .85s var(--ease) .12s both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── Filter Bar ────────────────────────────────────────── */
+    .filter-bar {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      padding: clamp(20px,3vw,32px) clamp(20px,5vw,48px);
+      border-bottom: 1px solid var(--border); max-width: 100%;
+    }
+    .filter-bar-inner { max-width: 1400px; margin: 0 auto; width: 100%; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .filter-btn {
+      font-size: 0.8rem; font-weight: 500; padding: 7px 16px; border-radius: 100px;
+      border: 1px solid var(--border); background: none; color: var(--text-2);
+      transition: all .2s; cursor: none; letter-spacing: 0.02em;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--surface-2); border-color: var(--border-2); color: var(--text-1);
+    }
+    .filter-btn.active { background: var(--accent-dim); border-color: rgba(184,255,87,.3); color: var(--accent); }
+    @media (max-width:768px) { .filter-btn { cursor: pointer; } }
+
+    /* ── Projects Grid ─────────────────────────────────────── */
+    .projects-section { padding: clamp(48px,7vw,80px) clamp(20px,5vw,48px); }
+    .projects-section-inner { max-width: 1400px; margin: 0 auto; }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 820px) { .proj-grid { grid-template-columns: 1fr; } }
+
+    .proj-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      transition: border-color .3s, transform .35s var(--ease);
+      text-decoration: none; color: inherit; display: flex; flex-direction: column;
+    }
+    .proj-card:hover { border-color: var(--border-2); transform: translateY(-6px); }
+    .proj-card-img {
+      aspect-ratio: 16/9; background: var(--surface-2);
+      position: relative; overflow: hidden;
+    }
+    .proj-card-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+    }
+    .proj-card-img-placeholder i { font-size: 2.5rem; color: var(--text-3); }
+    .proj-card-img-placeholder span { font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
+    .proj-card-overlay {
+      position: absolute; inset: 0; background: rgba(6,6,10,0.7);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .3s;
+    }
+    .proj-card:hover .proj-card-overlay { opacity: 1; }
+    .proj-card-overlay-btn {
+      background: var(--accent); color: #050508; font-family: var(--font-body);
+      font-size: 0.85rem; font-weight: 600; padding: 12px 24px; border-radius: 100px;
+      display: flex; align-items: center; gap: 8px;
+      transform: translateY(8px) scale(0.95);
+      transition: transform .3s var(--ease);
+    }
+    .proj-card:hover .proj-card-overlay-btn { transform: translateY(0) scale(1); }
+
+    .proj-card-body { padding: clamp(20px,3vw,32px); flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    .proj-card-meta { display: flex; align-items: center; justify-content: space-between; }
+    .proj-card-num { font-family: var(--font-head); font-size: 0.72rem; font-weight: 700; color: var(--text-3); letter-spacing: 0.08em; }
+    .proj-card-title { font-family: var(--font-head); font-size: clamp(1.05rem,2vw,1.3rem); font-weight: 700; line-height: 1.2; }
+    .proj-card-desc { font-size: 0.85rem; color: var(--text-2); line-height: 1.75; flex: 1; }
+    .proj-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .proj-card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .proj-card-link { font-size: 0.78rem; color: var(--text-3); display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .proj-card:hover .proj-card-link { color: var(--accent); }
+
+    /* Large first card */
+    .proj-card.large { grid-column: 1 / -1; }
+    .proj-card.large .proj-card-img { aspect-ratio: 21/9; }
+    @media (max-width: 820px) { .proj-card.large { grid-column: auto; } .proj-card.large .proj-card-img { aspect-ratio: 16/9; } }
+
+    /* Coming soon */
+    .proj-card.soon {
+      border-style: dashed; background: transparent;
+      align-items: center; justify-content: center; text-align: center;
+      min-height: 280px; padding: clamp(32px,5vw,56px);
+    }
+    .soon-icon { font-size: 2rem; color: var(--text-3); margin-bottom: 16px; }
+    .soon-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-2); margin-bottom: 10px; }
+    .soon-desc { font-size: 0.85rem; color: var(--text-3); line-height: 1.7; }
+
+    /* ── Process Section ───────────────────────────────────── */
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    @media (max-width: 860px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .process-grid { grid-template-columns: 1fr; } }
+    .process-step {
+      padding: clamp(24px,3.5vw,40px); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      transition: background .3s;
+    }
+    .process-step:hover { background: var(--surface); }
+    .process-step:last-child, .process-step:nth-child(4n) { border-right: none; }
+    @media (max-width: 860px) { .process-step:nth-child(2n) { border-right: none; } .process-step:nth-child(4n) { border-right: 1px solid var(--border); } }
+    @media (max-width: 480px) { .process-step { border-right: none; } }
+    .process-num {
+      font-family: var(--font-head); font-size: 2.5rem; font-weight: 800;
+      color: var(--accent-dim); margin-bottom: 16px; letter-spacing: -0.04em;
+      border: 1px solid var(--accent-dim); border-radius: 50%;
+      width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--accent);
+    }
+    .process-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+    .process-desc { font-size: 0.82rem; color: var(--text-2); line-height: 1.7; }
+
+    /* ── Tech Stack ────────────────────────────────────────── */
+    .tech-list {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(32px,5vw,48px);
+    }
+    .tech-chip {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 18px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 100px;
+      font-size: 0.85rem; font-weight: 500; color: var(--text-2);
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .tech-chip:hover { border-color: var(--border-2); color: var(--text-1); transform: translateY(-2px); }
+    .tech-chip img { width: 18px; height: 18px; object-fit: contain; }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="c-dot"></div>
+  <div class="c-ring"></div>
+
+  <!-- NAV -->
+  <nav class="nav solid" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="bracket">[</span>ZANGI<span class="bracket">]</span></a>
+      <div class="nav-status"><div class="status-dot"></div>Available for projects</div>
+      <div class="nav-links">
+        <a href="index.html"   class="nav-link" data-page="index.html">Home</a>
+        <a href="work.html"    class="nav-link" data-page="work.html">Work</a>
+        <a href="about.html"   class="nav-link" data-page="about.html">About</a>
+        <a href="contact.html" class="nav-link nav-cta" data-page="contact.html">Let's Talk</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <nav class="nav-drawer" id="drawer">
+    <a href="index.html"   class="nav-link" data-page="index.html">Home</a>
+    <a href="work.html"    class="nav-link" data-page="work.html">Work</a>
+    <a href="about.html"   class="nav-link" data-page="about.html">About</a>
+    <a href="contact.html" class="nav-link nav-cta" data-page="contact.html">Let's Talk →</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <div class="page-hero-kicker">
+        <span class="page-hero-num">02 / 04</span>
+        <span class="pill pill-accent">Selected Work</span>
+      </div>
+      <h1 class="page-hero-h">Projects &<br><span class="accent">Case Studies</span></h1>
+      <p class="page-hero-sub">Every project tells a story — a problem solved, a vision realized, a user experience elevated.</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-bar-inner">
+      <span style="font-size:0.78rem;color:var(--text-3);margin-right:4px;">Filter:</span>
+      <button class="filter-btn active" data-filter="all">All Work</button>
+      <button class="filter-btn" data-filter="webdev">Web Dev</button>
+      <button class="filter-btn" data-filter="saas">SaaS</button>
+      <button class="filter-btn" data-filter="redesign">Redesign</button>
+    </div>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <div class="projects-section">
+    <div class="projects-section-inner">
+      <div class="proj-grid" id="projGrid">
+
+        <!-- 001 - Large Card -->
+        <a href="https://tridentredesign.vercel.app/" target="_blank" rel="noopener"
+           class="proj-card large reveal" data-cat="webdev redesign">
+          <div class="proj-card-img">
+            <div class="proj-card-img-placeholder">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Trident Website</span>
+            </div>
+            <div class="proj-card-overlay">
+              <div class="proj-card-overlay-btn">Visit Live Site <i class="fas fa-arrow-up-right"></i></div>
+            </div>
+          </div>
+          <div class="proj-card-body">
+            <div class="proj-card-meta">
+              <span class="proj-card-num">001</span>
+              <span class="pill">Web Development · Redesign</span>
+            </div>
+            <h2 class="proj-card-title">Trident Website Redesign</h2>
+            <p class="proj-card-desc">The original site was slow, hard to navigate on mobile, and failed to represent the school's identity. I rebuilt it to prioritize brand clarity, mobile-first UX, and one-click access to admissions — resulting in a measurable increase in inquiries.</p>
+            <div class="proj-card-footer">
+              <div class="proj-card-tags">
+                <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript</span><span class="pill">Responsive</span>
+              </div>
+              <span class="proj-card-link">tridentredesign.vercel.app <i class="fas fa-arrow-up-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 002 -->
+        <a href="https://darkspace-one.vercel.app" target="_blank" rel="noopener"
+           class="proj-card reveal d1" data-cat="saas">
+          <div class="proj-card-img">
+            <div class="proj-card-img-placeholder">
+              <i class="fas fa-layer-group"></i>
+              <span>SaaS Platform</span>
+            </div>
+            <div class="proj-card-overlay">
+              <div class="proj-card-overlay-btn">Visit Live Site <i class="fas fa-arrow-up-right"></i></div>
+            </div>
+          </div>
+          <div class="proj-card-body">
+            <div class="proj-card-meta">
+              <span class="proj-card-num">002</span>
+              <span class="pill">SaaS · UI/UX</span>
+            </div>
+            <h2 class="proj-card-title">SaaS Platform Prototype</h2>
+            <p class="proj-card-desc">A modern software-as-a-service platform prototype featuring dashboard interfaces, dark UI components, and scalable architecture built for a startup client.</p>
+            <div class="proj-card-footer">
+              <div class="proj-card-tags"><span class="pill">React</span><span class="pill">UI/UX</span><span class="pill">Dashboard</span></div>
+              <span class="proj-card-link">darkspace-one.vercel.app <i class="fas fa-arrow-up-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 003 -->
+        <a href="https://zedprepai.vercel.app" target="_blank" rel="noopener"
+           class="proj-card reveal d2" data-cat="saas">
+          <div class="proj-card-img">
+            <div class="proj-card-img-placeholder">
+              <i class="fas fa-brain"></i>
+              <span>ZedPrep AI</span>
+            </div>
+            <div class="proj-card-overlay">
+              <div class="proj-card-overlay-btn">Visit Live Site <i class="fas fa-arrow-up-right"></i></div>
+            </div>
+          </div>
+          <div class="proj-card-body">
+            <div class="proj-card-meta">
+              <span class="proj-card-num">003</span>
+              <span class="pill">EdTech · AI · SaaS</span>
+            </div>
+            <h2 class="proj-card-title">ZedPrep AI — Study Platform</h2>
+            <p class="proj-card-desc">An AI-powered study platform designed to help Zambian students prepare smarter. Built with a clean dashboard, progress tracking, and an accessible UI for all devices.</p>
+            <div class="proj-card-footer">
+              <div class="proj-card-tags"><span class="pill">AI</span><span class="pill">SaaS</span><span class="pill">EdTech</span></div>
+              <span class="proj-card-link">zedprepai.vercel.app <i class="fas fa-arrow-up-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Coming Soon -->
+        <div class="proj-card soon reveal d3">
+          <div class="soon-icon"><i class="fas fa-code"></i></div>
+          <h3 class="soon-title">More Projects Coming Soon</h3>
+          <p class="soon-desc">Currently working on new exciting projects.<br>Check back soon or <a href="contact.html" style="color:var(--accent)">get in touch</a> to start yours.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal" style="margin-bottom:clamp(32px,5vw,56px)">
+        <div class="label">How I Work</div>
+        <h2 class="h2">My Process</h2>
+      </div>
+      <div class="process-grid reveal">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div class="process-title">Discovery</div>
+          <p class="process-desc">We start with a deep dive into your goals, target audience, and existing challenges to define a clear direction.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div class="process-title">Design</div>
+          <p class="process-desc">I create wireframes and visual mockups that reflect your brand, then refine based on your feedback.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div class="process-title">Build</div>
+          <p class="process-desc">Clean, semantic, performant code. Regular updates keep you in the loop throughout development.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <div class="process-title">Launch & Support</div>
+          <p class="process-desc">We go live together and I stay on for post-launch support to make sure everything is perfect.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECH STACK -->
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="wrap section">
+      <div class="reveal">
+        <div class="label">Tools & Technologies</div>
+        <h2 class="h2">My Stack</h2>
+      </div>
+      <div class="tech-list reveal">
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"> HTML5</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"> CSS3</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"> React</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"> Figma</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"> Git</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode"> VS Code</div>
+        <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="Vercel" style="filter:invert(1)"> Vercel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="wrap section">
+    <div class="cta-banner reveal" style="background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:clamp(48px,7vw,96px) clamp(32px,5vw,80px);text-align:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,rgba(184,255,87,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+      <div class="label" style="justify-content:center;margin-bottom:16px;">Start Something New</div>
+      <h2 style="font-family:var(--font-head);font-weight:800;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-0.04em;line-height:1;margin-bottom:20px;">Got a project in mind?</h2>
+      <p style="color:var(--text-2);max-width:440px;margin:0 auto 36px;font-size:0.93rem;line-height:1.75;">Let's work together and build something exceptional. I'm currently available for new projects.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg">Start a Project <i class="fas fa-arrow-right"></i></a>
+        <a href="about.html" class="btn btn-outline btn-lg">About Me</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="nav-logo"><span class="bracket">[</span>ZANGI<span class="bracket">]</span></span>
+        <span class="footer-copy">© <span class="year"></span> Zangi. All rights reserved.</span>
+        <nav class="footer-nav"><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/heavenmade360" target="_blank" class="social" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/jerome_mulozela" target="_blank" class="social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:zangi@gmail.com" class="social" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.proj-card[data-cat]').forEach(card => {
+          if (filter === 'all' || card.dataset.cat.includes(filter)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
