@@ -94,27 +94,41 @@ body {
 }
 
 
+
 /* ── Custom Cursor ──────────────────────────────────────────── */
 .c-dot, .c-ring {
   position: fixed; top: 0; left: 0;
   pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
+  /* Push to GPU for instant rendering */
+  will-change: transform;
 }
 .c-dot {
   width: 8px; height: 8px;
   background: var(--text-1);
   border-radius: 50%;
-  transition: width .25s var(--ease), height .25s var(--ease), opacity .25s;
+  /* OPTIMIZED: Replaced width/height with transform */
+  transition: transform .25s var(--ease), opacity .25s;
+  transform: translate(-50%, -50%) scale(1);
   mix-blend-mode: difference;
 }
 .c-ring {
   width: 36px; height: 36px;
   border: 1px solid rgba(255,255,255,0.4);
   border-radius: 50%;
-  transition: width .45s var(--ease), height .45s var(--ease), border-color .3s, opacity .3s;
+  /* OPTIMIZED: Replaced width/height with transform */
+  transition: transform .45s var(--ease), border-color .3s, opacity .3s;
+  transform: translate(-50%, -50%) scale(1);
 }
-body.hover .c-dot { width: 4px; height: 4px; opacity: 0.5; }
-body.hover .c-ring { width: 56px; height: 56px; border-color: var(--accent); }
+body.hover .c-dot { 
+  /* OPTIMIZED: Scale down instead of changing width/height */
+  transform: translate(-50%, -50%) scale(0.5); 
+  opacity: 0.5; 
+}
+body.hover .c-ring { 
+  /* OPTIMIZED: Scale up instead of changing width/height */
+  transform: translate(-50%, -50%) scale(1.55); 
+  border-color: var(--accent); 
+}
 @media (max-width: 768px) { .c-dot, .c-ring { display: none !important; } }
 
 /* ── Navigation ─────────────────────────────────────────────── */
