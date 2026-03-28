@@ -215,3 +215,32 @@
   });
 
 })();
+
+
+// ===================================
+// SCROLL REVEAL ANIMATIONS
+// ===================================
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -100px 0px"
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Add staggered delay for grid items
+            const delay = entry.target.classList.contains('project-card') 
+                ? index * 100 
+                : 0;
+            
+            setTimeout(() => {
+                entry.target.classList.add('active');
+            }, delay);
+        }
+    });
+}, observerOptions);
+
+// Observe all reveal elements
+document.querySelectorAll('.reveal').forEach((el) => {
+    observer.observe(el);
+});
