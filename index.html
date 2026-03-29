@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Zangi — Developer & Designer crafting high-performance digital experiences. Available for freelance.">
+  <meta name="description" content="Zangi — Developer & Designer crafting fast, purposeful websites. Available for freelance.">
   <title>Zangi — Developer & Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
-  
+
 
 /* ═══════════════════════════════════════════════════════════
    HERO — Cinematic Split Layout
@@ -67,7 +67,7 @@
   opacity: 0.35;
 }
 
-/* Giant watermark number — gives cinematic depth */
+/* Giant watermark number — cinematic depth */
 .hero-bg-number {
   position: absolute;
   top: 50%; right: -2%;
@@ -130,7 +130,6 @@
 .hero-title .line:nth-child(3) .line-in {
   animation-delay: .18s;
   color: var(--accent);
-  /* Subtle texture on the accent line */
   background: linear-gradient(135deg, #b8ff57 0%, #d4ff8a 50%, #90e830 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -155,7 +154,6 @@
   font-size: clamp(0.88rem, 1.7vw, 0.97rem);
   color: var(--text-2);
   line-height: 1.8;
-  /* Fine meta line above the description */
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
@@ -293,7 +291,7 @@
   filter: grayscale(0%) brightness(1);
 }
 
-/* Gradient scrim — always present, slides up on hover */
+/* Gradient scrim */
 .project-overlay {
   position: absolute;
   inset: 0;
@@ -419,19 +417,18 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   PAGE REVAMP — Everything except Hero & Projects
-   Assumes existing CSS variables:
-     --border, --border-2, --surface, --surface-2, --surface-3
-     --accent, --accent-dim, --text-1, --text-2, --text-3
-     --font-head, --radius, --ease
+   PAGE — Everything except Hero & Projects
    ═══════════════════════════════════════════════════════════ */
 
 
 /* ── NAV ──────────────────────────────────────────────────── */
-body{
-        box-sizing: border-box;
-        padding:0;}
-          
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -467,9 +464,7 @@ body{
   white-space: nowrap;
 }
 
-.nav-logo .bracket {
-  color: var(--accent);
-}
+.nav-logo .bracket { color: var(--accent); }
 
 .nav-status {
   display: flex;
@@ -697,7 +692,6 @@ body{
 
 .stat:hover::before { width: 100%; }
 .stat:hover { background: rgba(184,255,87,0.02); }
-
 .stat:last-child { border-right: none; }
 
 @media (max-width: 600px) {
@@ -761,7 +755,6 @@ body{
   transition: background .3s;
 }
 
-/* Subtle accent corner on hover */
 .svc::after {
   content: '';
   position: absolute;
@@ -777,7 +770,7 @@ body{
 .svc:hover::after { opacity: 1; }
 .svc:hover { background: rgba(184,255,87,0.025); }
 
-.svc:nth-child(3n)  { border-right: none; }
+.svc:nth-child(3n) { border-right: none; }
 
 @media (max-width: 900px) {
   .svc:nth-child(3n) { border-right: 1px solid var(--border); }
@@ -843,7 +836,6 @@ body{
   position: relative;
 }
 
-/* Decorative corner accent */
 .about-teaser-img::before {
   content: '';
   position: absolute;
@@ -906,7 +898,6 @@ body{
   letter-spacing: 0.04em;
 }
 
-/* Text side */
 .about-teaser-h {
   font-family: var(--font-head);
   font-weight: 800;
@@ -925,96 +916,6 @@ body{
 }
 
 
-/* ── TESTIMONIALS ─────────────────────────────────────────── */
-
-.testi-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: clamp(40px, 5vw, 56px);
-}
-
-@media (max-width: 680px) { .testi-grid { grid-template-columns: 1fr; } }
-
-.testi {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: clamp(24px, 4vw, 40px);
-  position: relative;
-  overflow: hidden;
-  transition: border-color .35s ease, transform .4s cubic-bezier(0.22,1,0.36,1), box-shadow .35s ease;
-}
-
-/* Quotation mark watermark */
-.testi::before {
-  content: '"';
-  position: absolute;
-  top: -16px; right: 24px;
-  font-family: var(--font-head);
-  font-size: 9rem;
-  font-weight: 800;
-  color: rgba(184,255,87,0.05);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-.testi:hover {
-  border-color: rgba(184,255,87,0.2);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.28);
-}
-
-.testi-stars {
-  color: var(--accent);
-  font-size: 0.78rem;
-  letter-spacing: 3px;
-  margin-bottom: 18px;
-}
-
-.testi-text {
-  font-size: 0.88rem;
-  color: var(--text-2);
-  line-height: 1.82;
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
-}
-
-.testi-author { display: flex; align-items: center; gap: 13px; }
-
-.testi-av {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: rgba(184,255,87,0.06);
-  border: 1px solid rgba(184,255,87,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-head);
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: var(--accent);
-  flex-shrink: 0;
-}
-
-.testi-name {
-  font-family: var(--font-head);
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text-1);
-}
-
-.testi-role {
-  font-size: 0.72rem;
-  color: var(--text-3);
-  margin-top: 2px;
-  letter-spacing: 0.02em;
-}
-
-
 /* ── CTA BANNER ───────────────────────────────────────────── */
 
 .cta-banner {
@@ -1027,7 +928,6 @@ body{
   overflow: hidden;
 }
 
-/* Top glow */
 .cta-banner::before {
   content: '';
   position: absolute;
@@ -1038,7 +938,6 @@ body{
   pointer-events: none;
 }
 
-/* Grid texture */
 .cta-banner::after {
   content: '';
   position: absolute;
@@ -1269,7 +1168,7 @@ footer {
 }
 
 
-/* ── CURSOR (optional enhancement) ───────────────────────── */
+/* ── CURSOR ───────────────────────────────────────────────── */
 
 .c-dot {
   width: 6px; height: 6px;
@@ -1313,8 +1212,6 @@ body:has(button:hover) .c-ring {
 
 /* ── MISC UTILITIES ───────────────────────────────────────── */
 
-*, *::before, *::after { box-sizing: border-box; }
-
 ::selection {
   background: rgba(184,255,87,0.25);
   color: #fff;
@@ -1328,24 +1225,21 @@ body:has(button:hover) .c-ring {
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-2); }
 
-
-
-    
   </style>
 </head>
 <body>
 
   <div class="bg-dots"></div>
-  <div class="c-dot"></div>
-  <div class="c-ring"></div>
+  <div class="c-dot" id="cDot"></div>
+  <div class="c-ring" id="cRing"></div>
 
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo"><span class="bracket">[</span>ZANGI<span class="bracket">]</span></a>
-      <div class="nav-status"><div class="status-dot"></div>Available for projects</div>
+      <div class="nav-status"><div class="status-dot"></div>Open to new projects</div>
       <div class="nav-links">
-        <a href="index.html"   class="nav-link" data-page="index.html">Home</a>
+        <a href="index.html"   class="nav-link active" data-page="index.html">Home</a>
         <a href="work.html"    class="nav-link" data-page="work.html">Work</a>
         <a href="about.html"   class="nav-link" data-page="about.html">About</a>
         <a href="contact.html" class="nav-link nav-cta" data-page="contact.html">Let's Talk</a>
@@ -1369,29 +1263,30 @@ body:has(button:hover) .c-ring {
       <div class="hero-bg-glow"></div>
       <div class="hero-bg-glow-2"></div>
       <div class="hero-grid-lines"></div>
+      <div class="hero-bg-number">ZG</div>
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">
         <div class="status-dot"></div>
-        Available for Freelance · Based in Zambia
+        Available for Freelance · Lusaka, Zambia
       </div>
       <h1 class="hero-title">
-        <span class="line"><span class="line-in">Building</span></span>
-        <span class="line"><span class="line-in">digital</span></span>
-        <span class="line"><span class="line-in">experiences.</span></span>
+        <span class="line"><span class="line-in">Websites</span></span>
+        <span class="line"><span class="line-in">built to</span></span>
+        <span class="line"><span class="line-in">convert.</span></span>
       </h1>
       <div class="hero-bottom">
         <p class="hero-desc">
-          I'm Zangi — a developer transforming ideas into elegant, high-performance
-          web solutions. Clean code, intentional design, real results.
+          I'm Zangi — a self-taught developer and designer from Lusaka, Zambia.
+          I build fast, purposeful websites that make visitors take action.
         </p>
         <div class="hero-actions">
           <a href="work.html" class="btn btn-primary btn-lg">
             <span>See My Work</span>
-            <i class="fas fa-arrow-down"></i>
+            <i class="fas fa-arrow-right"></i>
           </a>
           <a href="contact.html" class="btn btn-outline btn-lg">
-            <span>Get in Touch</span>
+            <span>Hire Me</span>
           </a>
         </div>
       </div>
@@ -1422,14 +1317,19 @@ body:has(button:hover) .c-ring {
     </div>
   </div>
 
-  <!-- STATS -->
+  <!-- STATS — fixed wrapper structure -->
+  <div class="stats-row">
     <div class="stat reveal d1">
-      <div class="stat-num">4<sup>+</sup></div>
-      <p class="stat-txt">Projects delivered — from school sites to SaaS platforms</p>
+      <div class="stat-num">6<sup>+</sup></div>
+      <p class="stat-txt">Projects shipped — from school sites to AI-powered SaaS platforms</p>
     </div>
     <div class="stat reveal d2">
       <div class="stat-num">100<sup>%</sup></div>
-      <p class="stat-txt">Client satisfaction on every project completed so far</p>
+      <p class="stat-txt">Client satisfaction across every brief taken on</p>
+    </div>
+    <div class="stat reveal d3">
+      <div class="stat-num">0</div>
+      <p class="stat-txt">Formal CS courses. Every skill earned by building real things.</p>
     </div>
   </div>
 
@@ -1444,19 +1344,41 @@ body:has(button:hover) .c-ring {
         <a href="about.html" class="btn btn-outline">Full Story <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="services-grid reveal">
-        <div class="svc"><div class="svc-icon"><i class="fas fa-code"></i></div><div class="svc-name">Web Development</div><p class="svc-desc">From landing pages to complex apps — semantic, performant code built to last.</p></div>
-        <div class="svc"><div class="svc-icon"><i class="fas fa-palette"></i></div><div class="svc-name">UI/UX Design</div><p class="svc-desc">Interfaces that look stunning and feel intuitive. Design and dev as one craft.</p></div>
-        <div class="svc"><div class="svc-icon"><i class="fas fa-mobile-alt"></i></div><div class="svc-name">Responsive Design</div><p class="svc-desc">Pixel-perfect across every screen — 320px phones to 4K monitors.</p></div>
-        <div class="svc"><div class="svc-icon"><i class="fas fa-bolt"></i></div><div class="svc-name">Performance</div><p class="svc-desc">Optimized for speed. Fast sites rank better and convert more visitors.</p></div>
-        <div class="svc"><div class="svc-icon"><i class="fas fa-object-group"></i></div><div class="svc-name">Figma to Code</div><p class="svc-desc">Pixel-perfect translation from your Figma designs to production HTML/CSS.</p></div>
-        <div class="svc"><div class="svc-icon"><i class="fas fa-sync-alt"></i></div><div class="svc-name">Website Redesign</div><p class="svc-desc">Transform outdated sites into modern, conversion-focused experiences.</p></div>
+        <div class="svc">
+          <div class="svc-icon"><i class="fas fa-code"></i></div>
+          <div class="svc-name">Web Development</div>
+          <p class="svc-desc">Landing pages to complex apps — semantic, performant code that holds up under real traffic.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-icon"><i class="fas fa-palette"></i></div>
+          <div class="svc-name">UI/UX Design</div>
+          <p class="svc-desc">Interfaces built to feel intuitive, not just look good. Design and engineering as a single craft.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="svc-name">Responsive Design</div>
+          <p class="svc-desc">Pixel-perfect from 320px phones to 4K displays — your site works everywhere your audience is.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-icon"><i class="fas fa-bolt"></i></div>
+          <div class="svc-name">Performance</div>
+          <p class="svc-desc">Speed is a feature. Optimized load times mean better rankings, lower bounce, and more conversions.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-icon"><i class="fas fa-object-group"></i></div>
+          <div class="svc-name">Figma to Code</div>
+          <p class="svc-desc">Your designs, brought to life with precision — no corner-cutting, no reinterpretation.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-icon"><i class="fas fa-sync-alt"></i></div>
+          <div class="svc-name">Website Redesign</div>
+          <p class="svc-desc">Outdated site costing you credibility? I rebuild it from the ground up, focused on conversion.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- FEATURED PROJECTS -->
-
-
   <div style="border-bottom:1px solid var(--border)">
     <div class="wrap section">
       <div class="projects-head reveal">
@@ -1467,136 +1389,123 @@ body:has(button:hover) .c-ring {
         <a href="work.html" class="btn btn-outline">View All <i class="fas fa-arrow-right"></i></a>
       </div>
 
-
       <div class="proj-list">
-        
-   <!-- Project 1 -->
-                <article class="project-card reveal">
-                    <a href="https://tridentredesign.vercel.app/" class="project-link">
-                        <div class="project-image">
-                            <img src="images (2).jpeg" alt="Trident Website">
-                            <div class="project-overlay">
-                                <span class="project-view">View Case Study <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">001</span>
-                                <span class="project-category">Web Development</span>
-                            </div>
-                            <h3 class="project-title">Trident website redesign</h3>
-                            <p class="project-description">
-                                  The Problem: "The original site was slow and hard to navigate on mobile."
-​The Solution: "I rebuilt it to prioritize school identity and 1-click admissions."          
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">HTML5</span>
-                                <span class="tag">CSS3</span>
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">Responsive</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
 
+        <!-- Project 001 — Trident Schools -->
+        <article class="project-card reveal">
+          <a href="https://tridentredesign.vercel.app/" class="project-link">
+            <div class="project-image">
+              <img src="images (2).jpeg" alt="Trident Schools Website Redesign">
+              <div class="project-overlay">
+                <span class="project-view">View Project <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">001</span>
+                <span class="project-category">Web Redesign</span>
+              </div>
+              <h3 class="project-title">Trident Schools — Website Redesign</h3>
+              <p class="project-description">
+                The original site was slow and invisible on mobile. Rebuilt with a premium navy/gold identity system, mobile-first layout, and a direct path to admissions inquiry — a school website that finally reflects the institution it represents.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Responsive</span>
+              </div>
+            </div>
+          </a>
+        </article>
 
-<article class="project-card reveal">
-                    <a href="https://zedprepai.vercel.app" class="project-link">
-                        <div class="project-image">
-                            <img src="1772388269277.jpg" alt="SaaS Platform">
-                            <div class="project-overlay">
-                                <span class="project-view">View Case Study <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">02</span>
-                                <span class="project-category">SaaS Design</span>
-                            </div>
-                            <h3 class="project-title">SaaS Platform Prototype</h3>
-                            <p class="project-description">
-                                Modern software-as-a-service platform prototype with clean UI/UX, 
-                                dashboard interfaces, and scalable component architecture.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">Prototype</span>
-                                <span class="tag">Dashboard</span>
-                            </div>
-                        </div>
-                    </a>
-    </article>
+        <!-- Project 002 — ZedPrep AI -->
+        <article class="project-card reveal d1">
+          <a href="https://zedprepai.vercel.app" class="project-link">
+            <div class="project-image">
+              <img src="1772388269277.jpg" alt="ZedPrep AI — Exam Prep Platform">
+              <div class="project-overlay">
+                <span class="project-view">View Project <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">002</span>
+                <span class="project-category">SaaS / EdTech</span>
+              </div>
+              <h3 class="project-title">ZedPrep AI — Exam Prep Platform</h3>
+              <p class="project-description">
+                AI-powered study platform built for Zambian ECZ students. Curriculum-mapped content, adaptive quizzes, and a freemium model designed for a market where quality tutors are out of reach for most.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">AI</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">EdTech</span>
+              </div>
+            </div>
+          </a>
+        </article>
 
-<article class="project-card reveal">
-                        <a href="https://darkspace-one.vercel.app" class="project-link">
-                        <div class="project-image">
-                            <img src="1772388269277.jpg" alt="SaaS Platform">
-                            <div class="project-overlay">
-                                <span class="project-view">View Case Study <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">02</span>
-                                <span class="project-category">SaaS Design</span>
-                            </div>
-                            <h3 class="project-title">SaaS Platform Prototype</h3>
-                            <p class="project-description">
-                                Modern software-as-a-service platform prototype with clean UI/UX, 
-                                dashboard interfaces, and scalable component architecture.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">Prototype</span>
-                                <span class="tag">Dashboard</span>
-                            </div>
-                        </div>
-                    </a>
-    </article>
+        <!-- Project 003 — DarkSpace -->
+        <article class="project-card reveal d2">
+          <a href="https://darkspace-one.vercel.app" class="project-link">
+            <div class="project-image">
+              <img src="1772388269277.jpg" alt="DarkSpace — UI Concept">
+              <div class="project-overlay">
+                <span class="project-view">View Project <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">003</span>
+                <span class="project-category">Frontend Design</span>
+              </div>
+              <h3 class="project-title">DarkSpace — Interactive UI Concept</h3>
+              <p class="project-description">
+                A dark, immersive UI experiment built to push CSS and JavaScript animation. Dramatic typography, depth layering, and motion design — a pure showcase of frontend craft.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Animation</span>
+              </div>
+            </div>
+          </a>
+        </article>
 
-                
+        <!-- Project 004 — Maison Éclipse -->
+        <article class="project-card reveal d3">
+          <a href="https://me-lusaka.vercel.app" class="project-link">
+            <div class="project-image">
+              <img src="1772388269277.jpg" alt="Maison Éclipse — Luxury Restaurant Concept">
+              <div class="project-overlay">
+                <span class="project-view">View Project <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">004</span>
+                <span class="project-category">Branding / Web Design</span>
+              </div>
+              <h3 class="project-title">Maison Éclipse — Luxury Restaurant</h3>
+              <p class="project-description">
+                Concept site for a high-end Lusaka restaurant. Cinematic imagery, editorial typography, and interactions designed to make the dining experience feel prestigious before guests walk through the door.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Luxury</span>
+              </div>
+            </div>
+          </a>
+        </article>
 
-
-
-
-
-
-<article class="project-card reveal">
-
-
-
-                    <a href="https://me-lusaka.vercel.app" class="project-link">
-                        <div class="project-image">
-                            <img src="1772388269277.jpg" alt="SaaS Platform">
-                            <div class="project-overlay">
-                                <span class="project-view">View Case Study <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">02</span>
-                                <span class="project-category">SaaS Design</span>
-                            </div>
-                            <h3 class="project-title">SaaS Platform Prototype</h3>
-                            <p class="project-description">
-                                Modern software-as-a-service platform prototype with clean UI/UX, 
-                                dashboard interfaces, and scalable component architecture.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">Prototype</span>
-                                <span class="tag">Dashboard</span>
-                            </div>
-                        </div>
-                    </a>
-    </article>
-
-
-
-<!-- ABOUT TEASER -->
+      </div>
+    </div>
+  </div>
 
   <!-- ABOUT TEASER -->
   <div style="border-bottom:1px solid var(--border)">
@@ -1604,17 +1513,17 @@ body:has(button:hover) .c-ring {
       <div class="about-teaser">
         <div class="about-teaser-img reveal">
           <div class="about-teaser-img-inner">
-            
+            <div class="about-avatar-icon"><i class="fas fa-user"></i></div>
             <div class="about-teaser-tag">Jerome · Zangi · Mulozela</div>
           </div>
         </div>
         <div class="reveal d1">
           <div class="label">Who I Am</div>
           <h2 class="about-teaser-h">Code with <span class="text-accent">purpose.</span><br>Design with intent.</h2>
-          <p class="about-teaser-p">I'm Zangi, a self-taught developer who transforms curiosity into digital experiences. What began as tinkering with code evolved into a passion for crafting websites that are beautiful and performant.</p>
-          <p class="about-teaser-p">Beyond the screen, I push myself through calisthenics, art, and content creation — approaching personal growth the same way I approach dev: incrementally and relentlessly.</p>
+          <p class="about-teaser-p">I'm Zangi — 19 years old, self-taught, and based in Lusaka, Zambia. No CS degree. Just an obsessive relationship with craft and hundreds of hours building things that actually work.</p>
+          <p class="about-teaser-p">Outside of code, I train calisthenics, make art, and create content — always applying the same principle: small, consistent improvements compound into something worth noticing.</p>
           <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="about.html" class="btn btn-primary">About Me <i class="fas fa-arrow-right"></i></a>
+            <a href="about.html" class="btn btn-primary">Full Story <i class="fas fa-arrow-right"></i></a>
             <a href="contact.html" class="btn btn-outline">Hire Me</a>
           </div>
         </div>
@@ -1622,46 +1531,15 @@ body:has(button:hover) .c-ring {
     </div>
   </div>
 
-    
-
-  <!-- TESTIMONIALS --
-  <div style="border-bottom:1px solid var(--border)">
-    <div class="wrap section">
-      <div class="reveal">
-        <div class="label">Social Proof</div>
-        <h2 class="h2">Kind Words</h2>
-      </div>
-      <div class="testi-grid">
-        <div class="testi reveal d1">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Zangi completely transformed our school's online presence. The site loads fast, looks incredible on mobile, and our admissions inquiries went up noticeably in the first month."</p>
-          <div class="testi-author">
-            <div class="testi-av">TR</div>
-            <div><div class="testi-name">Trident School</div><div class="testi-role">Web Development Client</div></div>
-          </div>
-        </div>
-        <div class="testi reveal d2">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"The attention to detail is unlike anything I've seen at this stage. Every component felt considered, every interaction felt smooth. Absolutely worth it."</p>
-          <div class="testi-author">
-            <div class="testi-av">ML</div>
-            <div><div class="testi-name">Michael L.</div><div class="testi-role">Startup Founder</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
   <!-- CTA BANNER -->
   <div class="wrap section">
     <div class="cta-banner reveal">
-      <div class="label" style="justify-content:center;margin-bottom:20px;">Ready to Build</div>
-      <h2 class="cta-banner-h">Let's make<br><span class="text-accent">something great.</span></h2>
-      <p class="cta-banner-p">Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your vision to life.</p>
+      <div class="label" style="justify-content:center;margin-bottom:20px;">Let's Build</div>
+      <h2 class="cta-banner-h">Your next project<br><span class="text-accent">starts here.</span></h2>
+      <p class="cta-banner-p">Tell me what you're building. A rebrand, a product site, something from scratch — I want to hear it.</p>
       <div class="cta-actions">
         <a href="contact.html" class="btn btn-primary btn-lg">Start a Project <i class="fas fa-arrow-right"></i></a>
-        <a href="work.html" class="btn btn-outline btn-lg">View My Work</a>
+        <a href="work.html" class="btn btn-outline btn-lg">See My Work</a>
       </div>
     </div>
   </div>
@@ -1681,11 +1559,71 @@ body:has(button:hover) .c-ring {
       <div class="socials">
         <a href="https://github.com/heavenmade360" target="_blank" class="social" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://instagram.com/jerome_mulozela" target="_blank" class="social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:zangi@gmail.com" class="social" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="contact.html" class="social" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    /* ── Year ── */
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── Burger / Drawer ── */
+    const burger  = document.getElementById('burger');
+    const drawer  = document.getElementById('drawer');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+
+    /* Close drawer on link click */
+    drawer.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        drawer.classList.remove('open');
+      });
+    });
+
+    /* ── Active nav link ── */
+    const page = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+      link.classList.toggle('active', link.dataset.page === page);
+    });
+
+    /* ── Custom cursor ── */
+    const dot  = document.getElementById('cDot');
+    const ring = document.getElementById('cRing');
+    if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+      let rx = 0, ry = 0;
+      window.addEventListener('mousemove', e => {
+        dot.style.left  = e.clientX + 'px';
+        dot.style.top   = e.clientY + 'px';
+        rx += (e.clientX - rx) * 0.12;
+        ry += (e.clientY - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+      });
+    }
+
+    /* ── Scroll reveal ── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
