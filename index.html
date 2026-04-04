@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
 
-
+/* ── 8px spacing scale (margins, padding, gaps) ── */
 :root {
   --s-0: 0;
   --s-1: 8px;
@@ -98,7 +98,7 @@
   opacity: 0.35;
 }
 
-
+/* Giant watermark number — cinematic depth */
 .hero-bg-number {
   position: absolute;
   top: 50%; right: -2%;
@@ -857,7 +857,7 @@ body {
 
 /* ── ABOUT TEASER ─────────────────────────────────────────── */
 
-.about-teaser { padding: 2rem 4rem;
+.about-teaser {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(var(--s-6), 7vw, 104px);
@@ -869,7 +869,7 @@ body {
 }
 
 .about-teaser-img {
-  height :500px; aspect-ratio :1/1;
+  aspect-ratio: 1/1;
   border-radius: 20px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -961,8 +961,7 @@ body {
 /* ── CTA BANNER ───────────────────────────────────────────── */
 
 .cta-banner {
-  gap :64px; height :500
-  aspect-ratio: 16/9;
+  aspect-ratio: 1/1;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--s-3);
