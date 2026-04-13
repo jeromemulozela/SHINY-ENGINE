@@ -143,13 +143,22 @@
 
 /* ── Headline ── */
 .hero-title {
-  font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(3.4rem, 10vw, 11rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  margin-bottom: clamp(var(--s-5), 5.5vw, var(--s-8));
+  font-size: clamp(2.5rem, 5vw + 1rem, 8rem);
+  
+  /* Keeps multi-line massive text from having massive gaps */
+  line-height: 1.1; 
+  
+  /* Heavy, large fonts usually look better pulled in slightly */
+  letter-spacing: -0.02em; 
+  
+  /* Modern CSS: Automatically balances line lengths to avoid "orphaned" words */
+  text-wrap: balance; 
+  
+  /* Optional: Prevents text from pushing outside the viewport on tiny screens */
+  word-break: break-word; 
 }
+
 
 .hero-title .line { display: block; overflow: hidden; }
 
@@ -869,7 +878,7 @@ body {
 }
 
 .about-teaser-img {
-  aspect-ratio: 1/1;
+  aspect-ratio: 420/293;
   border-radius: 20px;
   background: var(--surface);
   border: 1px solid var(--border);
