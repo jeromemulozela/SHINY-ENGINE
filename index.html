@@ -143,6 +143,7 @@
 
 /* ── Headline ── */
 .hero-title {
+  font-family: var(--font-head);
   font-weight: 800;
   font-size: clamp(2.5rem, 5vw + 1rem, 8rem);
   
@@ -200,33 +201,7 @@
 
 .hero-actions { display: flex; align-items: center; gap: var(--s-1); flex-wrap: wrap; }
 
-/* ── Scroll indicator ── */
-.hero-scroll {
-  position: absolute;
-  right: var(--gutter-x);
-  bottom: clamp(var(--s-6), 8vw, var(--s-10));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--s-1);
-  animation: fadeIn 1s .7s both;
-  z-index: 1;
-}
 
-.hero-scroll-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  writing-mode: vertical-rl;
-}
-
-.hero-scroll-bar {
-  width: 1px; height: 64px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scrollBar 1.6s var(--ease) 1s both;
-  transform-origin: top;
-}
 
 /* ── Hero keyframes ── */
 @keyframes glowPulse {
