@@ -88,6 +88,23 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
       background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
     }
+
+/* Ensure images perfectly fill the card and don't distort */
+.proj-card-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crops the image to fit the aspect ratio cleanly */
+  z-index: 1; /* Places the image over the placeholder background */
+}
+
+/* Ensure the dark hover overlay sits on top of the newly placed image */
+.proj-card-overlay {
+  z-index: 2;
+}
+
+      
     .proj-card-img-placeholder i { font-size: 2.5rem; color: var(--text-3); }
     .proj-card-img-placeholder span { font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
     .proj-card-overlay {
@@ -229,7 +246,7 @@
         <a href="https://tridentredesign.vercel.app/" target="_blank" rel="noopener"
            class="proj-card large reveal" data-cat="webdev redesign">
           <div class="proj-card-img">
-      
+            <div class="proj-card-img-placeholder">
             <img src="images (2).jpeg">
               <i class="fas fa-graduation-cap"></i>
               <span>Trident Website</span>
@@ -259,7 +276,7 @@
         <a href="https://darkspace-one.vercel.app" target="_blank" rel="noopener"
            class="proj-card reveal d1" data-cat="saas">
           <div class="proj-card-img">
-            
+            <div class="proj-card-img-placeholder">
               <i class="fas fa-layer-group"></i>
               <span>SaaS Platform</span>
             </div>
@@ -285,7 +302,7 @@
         <a href="https://zedprepai.vercel.app" target="_blank" rel="noopener"
            class="proj-card reveal d2" data-cat="saas">
           <div class="proj-card-img">
-          
+            <div class="proj-card-img-placeholder">
             <img src="1772388269277.jpg">
               <i class="fas fa-brain"></i>
               <span>ZedPrep AI</span>
@@ -403,4 +420,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
