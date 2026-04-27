@@ -88,6 +88,23 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
       background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
     }
+
+/* Ensure images perfectly fill the card and don't distort */
+.proj-card-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crops the image to fit the aspect ratio cleanly */
+  z-index: 1; /* Places the image over the placeholder background */
+}
+
+/* Ensure the dark hover overlay sits on top of the newly placed image */
+.proj-card-overlay {
+  z-index: 2;
+}
+
+      
     .proj-card-img-placeholder i { font-size: 2.5rem; color: var(--text-3); }
     .proj-card-img-placeholder span { font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
     .proj-card-overlay {
@@ -403,4 +420,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
